@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap');
+
+*{
+  font-family: 'Ubuntu', sans-serif !important;
+}
+
+.card {
+  box-shadow: 0 0 2px gray;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.page-title {
+  font-size: 25px;
+  color: black;
+  font-weight: bold;
+}
+
+.normal-text
+ {
+  font-size: 1rem;
+ }
+.authentication {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.authentication-form {
+  width: 400px;
+}
+
+.hr-line {
+  width: 97%;
+  margin: 20px 0 20px 20px;
+}
+
+h2 {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.anchor {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.card-text {
+  border: 2px solid #1976D3;
+  height: 35px;
+  padding-left: 10px;
+  padding-top: 4px;
+  margin: 0px 5px 5px 5px;
+}
+
+.card-text:last-child {
+  margin-bottom: 5px;
+}

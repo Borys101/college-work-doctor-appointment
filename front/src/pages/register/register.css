@@ -1,0 +1,10 @@
+.authentication .card-title {
+    font-size: 1.5rem;
+    font-weight: normal;
+    background: #1976d2;
+    color: white;
+    max-width: max-content;
+    padding: 7px 15px;
+    margin-left: -40px;
+    border-bottom-left-radius: 10px;
+}

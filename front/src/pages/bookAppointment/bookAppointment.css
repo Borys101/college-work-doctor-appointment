@@ -1,0 +1,58 @@
+.booking {
+    margin-left: 10px;
+    display: flex;
+}
+
+.booking > div {
+    margin-right: 140px;
+}
+
+.page-title {
+    color: #1976D3;
+    font-weight: lighter;
+    font-size: 40px;
+}
+
+.working-time {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.booking-choose {
+    font-size: 25px;
+}
+
+.date-picker {
+    margin-bottom: 20px !important;
+    width: 350px;
+}
+
+.time-picker {
+    margin-bottom: 20px !important;
+    width: 350px;
+}
+
+.booking-button {
+    background-color: #00528A;
+    border: none;
+    border-radius: 10px;
+    margin: 15px 0 10px 0px;
+    width: 350px;
+    color: #fff;
+    padding: 10px 10px;
+}
+
+.doctor-information {
+    background-color: white;
+    width: 400px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.doctor-information > h4 {
+    text-align: center;
+}
+
+.doctor-information p {
+    color: #1976D3;
+}

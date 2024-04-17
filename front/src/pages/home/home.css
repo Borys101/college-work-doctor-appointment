@@ -1,0 +1,21 @@
+.doctor-card {
+    border: 1px solid gray;
+    color: #fff;
+    background-color: #439BF2;
+    width: 30%;
+    border-radius: 8px;
+    height: 200px;
+}
+
+.make-appointment-button {
+    background-color: #00528A;
+    border: none;
+    border-radius: 10px;
+    margin: 15px 0 10px 235px;
+    color: #fff;
+    padding: 6px 10px;
+}
+
+h2 {
+    font-size: 20px;
+}
