@@ -34,7 +34,6 @@ router.post("/update-doctor-profile", authMiddleware, async (req, res) => {
 
 router.get("/get-appointments-by-doctor-id", authMiddleware, async (req, res) => {
     try {
-        console.log(req.body)
         const user = await User.findOne({ _id: req.body.userId });
         const doctor = await Doctor.findOne({ email: user.email })
         const appointments = await Appointments.find({ doctorId: doctor._id })
@@ -74,6 +73,65 @@ router.post("/change-appointment-status", authMiddleware, async (req, res) => {
             success: false,
             error
         })        
+    }
+})
+
+router.post("/get-appointment-info", authMiddleware, async (req, res) => {
+    try {
+        const appointmentInfo = await Appointments.find({ _id: req.body.appointmentId })
+        res.status(200).send({
+            message: "Інформація про записи успішно отримана",
+            success: true,
+            data: appointmentInfo
+        })
+    } catch (error) {
+        res.status(500).send({
+            message: "Помилка при отриманні записів",
+            success: false,
+            error
+        })        
+    }
+})
+
+router.post("/save-response", authMiddleware, async (req, res) => {
+    try {
+        const { doctorResponse, currentAppointment } = req.body;
+        const appointment = await Appointments.findByIdAndUpdate(currentAppointment._id, { doctorResponse });
+        const user = await User.findOne({ _id:  appointment.userId});
+        const unseenNotifications = user.unseenNotifications;
+        unseenNotifications.push({
+            type: "response-added",
+            message: 'Вам надіслали результат вашого огляду',
+            onClickPath: "/appointments"
+        })
+        await user.save();
+        res.status(200).send({
+            message: "Зміни були успішно збережені",
+            success: true,
+        })
+    } catch (error) {
+        res.status(500).send({
+            message: "Помилка при внесенні змін",
+            success: false,
+            error
+        })        
+    }
+})
+
+router.post("/save-prescriptions", authMiddleware, async (req, res) => {
+    try {
+        const { correctPrescriptions, currentAppointmentId } = req.body;
+        await Appointments.findByIdAndUpdate(currentAppointmentId, { "doctorResponse.prescriptions": correctPrescriptions });
+        res.status(200).send({
+            message: "Рецепти успішно виписані",
+            success: true
+        })
+    } catch (error) {
+        res.status(500).send({
+            message: "Помилка при внесенні змін",
+            success: false,
+            error
+        }) 
     }
 })
 

@@ -12,7 +12,8 @@ import DoctorsList from './pages/admin/doctorsList/DoctorsList';
 import DoctorProfile from './pages/doctor/DoctorProfile';
 import BookAppointment from './pages/bookAppointment/BookAppointment';
 import Appointments from './pages/appointments/Appointments';
-import DoctorAppointments from './pages/doctor/DoctorAppointments';
+import DoctorAppointments from './pages/doctor/doctorAppointments/DoctorAppointments';
+import AppointmentPage from './pages/doctor/appointmentPage/AppointmentPage';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path='/book-appointment/:doctorId' element={<ProtectedRoute><BookAppointment /></ProtectedRoute>} />
         <Route path='/appointments' element={<ProtectedRoute><Appointments /></ProtectedRoute>} />
         <Route path='/doctor/appointments' element={<ProtectedRoute><DoctorAppointments /></ProtectedRoute>} />
+        <Route path='/doctor/appointments/detail-info/:appointmentId' element={<ProtectedRoute><AppointmentPage /></ProtectedRoute>} />
       </Routes>
     </BrowserRouter>
   );
