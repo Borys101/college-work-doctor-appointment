@@ -180,4 +180,5 @@ router.get("/get-appointments-by-user-id", authMiddleware, async (req, res) => {
         })        
     }
 })
+
 module.exports = router;

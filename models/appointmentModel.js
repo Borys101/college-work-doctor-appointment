@@ -28,6 +28,14 @@ const appointmentSchema = new mongoose.Schema({
         type: String,
         required: true,
         default: "pending"
+    },
+    comments: {
+        type: String,
+        required: false
+    },
+    doctorResponse: {
+        type: Object,
+        required: false
     }
 }, { timestamps: true })
 

@@ -1,13 +1,19 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import Layout from '../../components/layout/Layout';
+import Layout from '../../components/layout/Layout'
+import BasicModal from '../../components/modalPills/ModalPills';
+import ErrorMessage from '../../components/errorMessage/ErrorMessage';
+import Spinner from '../../components/spinner/Spinner';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, tableCellClasses } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import moment from 'moment';
+import { useNavigate, useParams } from 'react-router-dom';
+import '../doctor/doctorAppointments/doctorAppointments.css';
 
 function Appointments() {
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setIsError] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const navigate = useNavigate();
     const [appointments, setAppointments] = useState([]);
     const getDoctorsData = async () => {
         try {
@@ -39,7 +45,9 @@ function Appointments() {
     }, []);
     return (
         <Layout>
-            <TableContainer component={Paper}>
+            {isError ? <ErrorMessage /> : null}
+            {isLoading ? <Spinner /> : null}
+            {!isError && !isLoading && <TableContainer component={Paper}>
                 <Table aria-label="simple table" stickyHeader>
                     <TableHead>
                         <TableRow>
@@ -51,7 +59,7 @@ function Appointments() {
                     </TableHead>
                     <TableBody>
                         {appointments?.map((appointment) => (
-                            <TableRow key={appointment.name}>
+                            <TableRow key={appointment.name} onClick={() => navigate(`detail-info/${appointment._id}`)} className='appointment-row'>
                                 <TableCell component="th" scope="row" align='center'>
                                     {appointment.doctorInfo.lastName} {appointment.doctorInfo.firstName} {appointment.doctorInfo.fatherName}
                                 </TableCell>
@@ -62,7 +70,7 @@ function Appointments() {
                         ))}
                     </TableBody>
                 </Table>
-            </TableContainer>
+            </TableContainer>}
         </Layout>
     );
 }

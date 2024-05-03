@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment'
 import './bookAppointment.css';
+import TextArea from '@mui/joy/Textarea'
 import { DatePicker, LocalizationProvider, TimePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
@@ -19,6 +20,7 @@ function BookAppointment() {
     const [ doctor, setDoctor ] = useState(null);
     const [ date, setDate ] = useState();
     const [ time, setTime ] = useState();
+    const [ comments, setComments ] = useState();
     const [ timesBooked, setTimesBooked ] = useState([]);
     const params = useParams();
     const dispatch = useDispatch();
@@ -50,7 +52,8 @@ function BookAppointment() {
                 doctorInfo: doctor,
                 userInfo: user,
                 date: date,
-                time: time
+                time: time,
+                comments: comments
             }, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -90,6 +93,11 @@ function BookAppointment() {
         const formattedValue = timeValue.format('HH:mm');
         return timesBooked.includes(formattedValue);
     }
+
+    const handleCommentsField = (e) => {
+        setComments(e.target.value);
+    }
+
     useEffect(() => {
         getDoctorData();
     }, [user])
@@ -141,6 +149,7 @@ function BookAppointment() {
                                 </DemoContainer>
                             </LocalizationProvider>
                         </div>
+                        <TextArea placeholder='Коментарі' variant="outlined" minRows={3} onChange={handleCommentsField}/>
                         <button className='booking-button' onClick={bookNow}>Записатися</button>
                     </div>
                     <div>
