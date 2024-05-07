@@ -1,0 +1,42 @@
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    background: rgb(245, 245, 245);
+    border: 2px solid #1976d2;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.modal-content::before {
+    content: "РЕЦЕПТИ";
+    text-align: center;
+    align-content: center;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 200px;
+    font-size: 18px;
+    letter-spacing: 3px;
+    height: 35px;
+    background-color: #1976d2;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 15px;
+    color: #fff
+}
+
+.drug-flex-container {
+    display: flex;
+    gap: 5px;
+}
+
+.hr-drugs-line {
+    width: 100%;
+    margin: 25px 0px 25px 0px;
+}
+
+.button-prescriptions {
+    margin-right: 20px !important;
+}

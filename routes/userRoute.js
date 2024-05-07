@@ -181,4 +181,30 @@ router.get("/get-appointments-by-user-id", authMiddleware, async (req, res) => {
     }
 })
 
+router.get("/get-recipes", authMiddleware, async (req, res) => {
+    try {
+        const recipes = [];
+        const appointments = await Appointment.find({ userId: req.body.userId })
+        appointments.forEach(appointment => {
+            if (appointment.doctorResponse.prescriptions) {
+                const recipeInfo = [ ...appointment.doctorResponse.prescriptions ];
+                recipeInfo.push(appointment.date);
+                recipes.push(recipeInfo);
+            }
+        })
+        
+        res.status(200).send({
+            message: "Записи успішно отримані",
+            success: true,
+            data: recipes
+        })
+    } catch (error) {
+        res.status(500).send({
+            message: "Помилка при отриманні записів",
+            success: false,
+            error
+        })        
+    }
+})
+
 module.exports = router;

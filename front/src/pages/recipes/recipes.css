@@ -1,0 +1,10 @@
+.presc-card {
+    border: 1px solid gray;
+    color: #fff;
+    background-color: #439BF2;
+    width: 20%;
+    border-radius: 8px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+}

@@ -9,6 +9,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import './layout.css'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -30,6 +31,11 @@ function Layout({ children }) {
             path: "/appointments",
             icon: <BallotIcon />
         },
+        {
+            name: "Мої рецепти",
+            path: "/recipes",
+            icon: <FormatListNumberedIcon />
+        }
     ];
 
     const adminMenu = [
