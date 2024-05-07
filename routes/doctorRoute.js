@@ -96,15 +96,17 @@ router.post("/get-appointment-info", authMiddleware, async (req, res) => {
 router.post("/save-response", authMiddleware, async (req, res) => {
     try {
         const { doctorResponse, currentAppointment } = req.body;
-        const appointment = await Appointments.findByIdAndUpdate(currentAppointment._id, { doctorResponse });
-        const user = await User.findOne({ _id:  appointment.userId});
-        const unseenNotifications = user.unseenNotifications;
-        unseenNotifications.push({
-            type: "response-added",
-            message: 'Вам надіслали результат вашого огляду',
-            onClickPath: "/appointments"
-        })
-        await user.save();
+        const appointment = await Appointments.findById(currentAppointment._id);
+        const updatedDoctorResponse = { ...appointment.doctorResponse, ...doctorResponse };
+        await Appointments.findByIdAndUpdate(currentAppointment._id, { doctorResponse: updatedDoctorResponse });
+        // const user = await User.findOne({ _id:  appointment.userId});
+        // const unseenNotifications = user.unseenNotifications;
+        // unseenNotifications.push({
+        //     type: "response-added",
+        //     message: 'Вам надіслали результат вашого огляду',
+        //     onClickPath: "/appointments"
+        // })
+        // await user.save();
         res.status(200).send({
             message: "Зміни були успішно збережені",
             success: true,

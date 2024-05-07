@@ -14,6 +14,7 @@ import BookAppointment from './pages/bookAppointment/BookAppointment';
 import Appointments from './pages/appointments/Appointments';
 import DoctorAppointments from './pages/doctor/doctorAppointments/DoctorAppointments';
 import AppointmentPage from './pages/doctor/appointmentPage/AppointmentPage';
+import Recipes from './pages/recipes/Recipes';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path='/' element={<ProtectedRoute><Home /></ProtectedRoute>} />
         <Route path='/apply-doctor' element={<ProtectedRoute><ApplyDoctor /></ProtectedRoute>} />
         <Route path='/notifications' element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
+        <Route path='/recipes' element={<ProtectedRoute><Recipes /></ProtectedRoute>} />
         <Route path='/admin/users' element={<ProtectedRoute><UsersList /></ProtectedRoute>} />
         <Route path='/admin/doctors' element={<ProtectedRoute><DoctorsList /></ProtectedRoute>} />
         <Route path='/doctor/profile/:userId' element={<ProtectedRoute><DoctorProfile /></ProtectedRoute>} />

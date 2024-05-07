@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Layout from '../../components/layout/Layout'
-import BasicModal from '../../components/modalPills/ModalPills';
+import BasicModal from '../doctor/modalPills/ModalPills';
 import ErrorMessage from '../../components/errorMessage/ErrorMessage';
 import Spinner from '../../components/spinner/Spinner';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, tableCellClasses } from '@mui/material';
@@ -17,6 +17,7 @@ function Appointments() {
     const [appointments, setAppointments] = useState([]);
     const getDoctorsData = async () => {
         try {
+            setIsError(false);
             setIsLoading(true);
             const response = await axios.get("/api/users/get-appointments-by-user-id", {
                 headers: {
@@ -29,6 +30,7 @@ function Appointments() {
             }
         } catch (error) {
             setIsLoading(false);
+            setIsError(true);
         }
     }
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
